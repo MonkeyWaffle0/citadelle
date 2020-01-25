@@ -52,7 +52,7 @@ class Voleur(Role):
     def action(self, deck):
         deck.showVoleur()
         choice = input("Who do you want to steal from ? ")
-        steal = deck[choice - 1]
+        steal = deck[int(choice) - 1]
         print("You stole the " + steal)
         for player in Player.players:
             if player.role == steal:
@@ -107,7 +107,7 @@ class Magicien(Role):
 
             if choice <= len(Player.players) and choice > 0:
                 choosing = False
-                otherPlayer = Player.players[choice - 1]
+                otherPlayer = Player.players[int(choice) - 1]
                 temp = self.player.hand
                 self.player.hand = otherPlayer.hand
                 otherPlayer.hand = temp
@@ -129,7 +129,7 @@ class Magicien(Role):
 
             if choice <= len(self.player.hand) and choice > 0:
                 choosing = False
-                card = self.player.hand[choice - 1]
+                card = self.player.hand[int(choice) - 1]
                 self.player.discard(card)
                 self.player.drawBuilding()
 
@@ -236,54 +236,3 @@ class Condotiere(Role):
 
     def action(self):
         pass
-
-
-class RoleDeck(Deck):
-    def __init__(self):
-        super().__init__()
-        self.deck = [Assassin, Voleur, Magicien, Roi, Eveque, Marchand, Architecte]
-        self.middle = []
-
-    def __str__(self):
-        string = ""
-        for i, role in enumerate(self.deck):
-            string += str(i + 1) + " - " + role.toString() + "\n"
-
-        return string
-
-    def __getitem__(self, index):
-        return self.deck[index]
-
-    def getTurnOrder(self, role):
-        return role.getTurnOrder()
-
-    def sort(self):
-        self.deck.sort(key=self.getTurnOrder)
-
-    def showAssassin(self):
-        """Shows every roles minus the one face up in the middle and the assassin."""
-        string = ""
-        for i, role in enumerate(self.deck):
-            if role.toString() != "Assassin" and role not in self.middle:
-                string += str(i + 1) + " - " + role.toString() + "\n"
-        print(string)
-
-    def showVoleur(self):
-        """Shows every roles minus the one face up in the middle and the assassin and the voleur."""
-        string = ""
-        for i, role in enumerate(self.deck):
-            if role.toString() != "Assassin" and role.toString() != "Voleur" and role not in self.middle:
-                string += str(i + 1) + " - " + role.toString() + "\n"
-        print(string)
-
-    def reset(self):
-        self.deck = [Assassin, Voleur, Magicien, Roi, Eveque, Marchand, Architecte]
-
-    def startGame(self):
-        self.shuffle()
-        middle = self.draw()
-        if middle == Roi:
-            self.reset()
-            self.startGame()
-        else:
-            print("There is no " + middle.toString())
