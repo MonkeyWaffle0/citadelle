@@ -9,9 +9,9 @@ class Role(Card):
 
 
 class Assassin(Role):
-    def __init__(self, player):
+    def __init__(self):
         super().__init__("none")
-        self.player = player
+        self.player = None
         self.role = "Assassin"
         self.turnOrder = 1
 
@@ -29,9 +29,9 @@ class Assassin(Role):
 
 
 class Voleur(Role):
-    def __init__(self, player):
+    def __init__(self):
         super().__init__("none")
-        self.player = player
+        self.player = None
         self.role = "Voleur"
         self.turnOrder = 2
 
@@ -49,9 +49,9 @@ class Voleur(Role):
 
 
 class Magicien(Role):
-    def __init__(self, player):
+    def __init__(self):
         super().__init__("none")
-        self.player = player
+        self.player = None
         self.role = "Magicien"
         self.turnOrder = 3
 
@@ -88,7 +88,7 @@ class Magicien(Role):
         while choosing:
             choice = input()
 
-            if choice <= len(Player.players) and choice > 0:
+            if len(Player.players) >= int(choice) > 0:
                 choosing = False
                 otherPlayer = Player.players[int(choice) - 1]
                 temp = self.player.hand
@@ -110,7 +110,7 @@ class Magicien(Role):
         while choosing:
             choice = input()
 
-            if choice <= len(self.player.hand) and choice > 0:
+            if len(self.player.hand) >= int(choice) > 0:
                 choosing = False
                 card = self.player.hand[int(choice) - 1]
                 self.player.discard(card)
@@ -121,9 +121,9 @@ class Magicien(Role):
 
 
 class Roi(Role):
-    def __init__(self, player):
+    def __init__(self):
         super().__init__("Yellow")
-        self.player = player
+        self.player = None
         self.role = "Roi"
         self.turnOrder = 4
 
@@ -135,9 +135,9 @@ class Roi(Role):
 
 
 class Eveque(Role):
-    def __init__(self, player):
+    def __init__(self):
         super().__init__("Blue")
-        self.player = player
+        self.player = None
         self.role = "Eveque"
         self.turnOrder = 5
 
@@ -149,9 +149,9 @@ class Eveque(Role):
 
 
 class Marchand(Role):
-    def __init__(self, player):
+    def __init__(self):
         super().__init__("Green")
-        self.player = player
+        self.player = None
         self.role = "Marchand"
         self.turnOrder = 6
 
@@ -163,9 +163,9 @@ class Marchand(Role):
 
 
 class Architecte(Role):
-    def __init__(self, player):
+    def __init__(self):
         super().__init__("None")
-        self.player = player
+        self.player = None
         self.role = "Architecte"
         self.turnOrder = 7
 
@@ -178,9 +178,9 @@ class Architecte(Role):
 
 
 class Condotiere(Role):
-    def __init__(self, player):
+    def __init__(self):
         super().__init__("Red")
-        self.player = player
+        self.player = None
         self.role = "Condotiere"
         self.turnOrder = 8
 

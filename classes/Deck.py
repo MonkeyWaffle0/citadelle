@@ -2,6 +2,8 @@ from classes.Role import *
 from classes.Building import *
 from BUILDINGS import *
 
+import random
+
 
 class Deck:
     """Abstract class of a deck of card"""
@@ -69,7 +71,7 @@ class RoleDeck(Deck):
         architecte = Architecte()
         condotiere = Condotiere()
         self.deck = [assassin, voleur, magicien, roi, eveque, marchand, architecte, condotiere]
-        self.middle = []
+        self.middle = []   # Roles in the middle of the table
 
     def __str__(self):
         string = ""
@@ -82,7 +84,7 @@ class RoleDeck(Deck):
         return self.deck[index]
 
     def getTurnOrder(self, role):
-        return role.getTurnOrder()
+        return role.turnOrder()
 
     def sort(self):
         self.deck.sort(key=self.getTurnOrder)
@@ -91,7 +93,7 @@ class RoleDeck(Deck):
         """Shows every roles minus the one face up in the middle and the assassin."""
         string = ""
         for i, role in enumerate(self.deck):
-            if role.toString() != "Assassin" and role not in self.middle:
+            if role.role != "Assassin" and role not in self.middle:
                 string += str(i + 1) + " - " + str(role) + "\n"
         print(string)
 
@@ -104,7 +106,15 @@ class RoleDeck(Deck):
         print(string)
 
     def reset(self):
-        self.deck = [Assassin, Voleur, Magicien, Roi, Eveque, Marchand, Architecte]
+        assassin = Assassin()
+        voleur = Voleur()
+        magicien = Magicien()
+        roi = Roi()
+        eveque = Eveque()
+        marchand = Marchand()
+        architecte = Architecte()
+        condotiere = Condotiere()
+        self.deck = [assassin, voleur, magicien, roi, eveque, marchand, architecte, condotiere]
 
     def startGame(self):
         self.shuffle()
@@ -113,4 +123,4 @@ class RoleDeck(Deck):
             self.reset()
             self.startGame()
         else:
-            print("There is no " + middle.toString())
+            print("There is no " + middle.role)
