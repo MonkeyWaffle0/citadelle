@@ -1,5 +1,6 @@
 from classes.Role import *
 from classes.Building import *
+from BUILDINGS import *
 
 class Deck:
     """Abstract class of a deck of card"""
@@ -34,13 +35,25 @@ class Deck:
 class BuildingDeck(Deck):
     def __init__(self):
         super().__init__()
-        card1 = Building("Red", "Prison", 2, 2)
-        card2 = Building("Green", "Echoppe", 2, 2)
-        card3 = Building("Yellow", "Chateau", 5, 5)
-
-        self.add(card1)
-        self.add(card2)
-        self.add(card3)
+        self.deck = [
+            PALAIS, PALAIS, PALAIS,
+            MANOIR, MANOIR, MANOIR, MANOIR, MANOIR,
+            CHATEAU, CHATEAU, CHATEAU, CHATEAU,
+            TOUR_DE_GUET, TOUR_DE_GUET, TOUR_DE_GUET,
+            FORTERESSE, FORTERESSE,
+            PRISON, PRISON, PRISON,
+            CASERNE, CASERNE, CASERNE,
+            CATHEDRALE, CATHEDRALE,
+            TEMPLE, TEMPLE, TEMPLE,
+            MONASTERE, MONASTERE, MONASTERE,
+            EGLISE, EGLISE, EGLISE,
+            COMPTOIR, COMPTOIR, COMPTOIR,
+            TAVERNE, TAVERNE, TAVERNE, TAVERNE,
+            MARCHE, MARCHE, MARCHE, MARCHE,
+            PORT, PORT, PORT,
+            HOTEL_DE_VILLE, HOTEL_DE_VILLE,
+            ECHOPPE, ECHOPPE, ECHOPPE
+        ]
 
 
 class RoleDeck(Deck):
