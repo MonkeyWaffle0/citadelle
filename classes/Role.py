@@ -1,5 +1,6 @@
 from classes.Card import *
 from classes.Deck import *
+from classes.Player import *
 
 
 class Role(Card):
@@ -16,12 +17,6 @@ class Assassin(Role):
 
     def __str__(self):
         return self.role
-
-    def toString():
-        return "Assassin"
-
-    def getTurnOrder():
-        return 1
 
     def action(self, deck):
         deck.showAssassin()
@@ -43,12 +38,6 @@ class Voleur(Role):
     def __str__(self):
         return self.role
 
-    def toString():
-        return "Voleur"
-
-    def getTurnOrder():
-        return 2
-
     def action(self, deck):
         deck.showVoleur()
         choice = input("Who do you want to steal from ? ")
@@ -68,12 +57,6 @@ class Magicien(Role):
 
     def __str__(self):
         return self.role
-
-    def toString():
-        return "Magicien"
-
-    def getTurnOrder():
-        return 3
 
     def action(self, deck):
         print("Do you want to :")
@@ -147,12 +130,6 @@ class Roi(Role):
     def __str__(self):
         return self.role
 
-    def toString():
-        return "Roi"
-
-    def getTurnOrder():
-        return 4
-
     def action(self):
         self.player.king()
 
@@ -166,12 +143,6 @@ class Eveque(Role):
 
     def __str__(self):
         return self.role
-
-    def toString():
-        return "Eveque"
-
-    def getTurnOrder():
-        return 5
 
     def action(self):
         pass
@@ -187,12 +158,6 @@ class Marchand(Role):
     def __str__(self):
         return self.role
 
-    def toString():
-        return "Marchand"
-
-    def getTurnOrder():
-        return 6
-
     def action(self):
         self.player.getMoney(1)
 
@@ -206,12 +171,6 @@ class Architecte(Role):
 
     def __str__(self):
         return self.role
-
-    def toString():
-        return "Architecte"
-
-    def getTurnOrder():
-        return 7
 
     def action(self):
         self.player.drawBuilding()
@@ -227,12 +186,6 @@ class Condotiere(Role):
 
     def __str__(self):
         return self.role
-
-    def toString():
-        return "Condotiere"
-
-    def getTurnOrder():
-        return 8
 
     def action(self):
         pass

@@ -2,6 +2,7 @@ from classes.Role import *
 from classes.Building import *
 from BUILDINGS import *
 
+
 class Deck:
     """Abstract class of a deck of card"""
     def __init__(self):
@@ -59,13 +60,21 @@ class BuildingDeck(Deck):
 class RoleDeck(Deck):
     def __init__(self):
         super().__init__()
-        self.deck = [Assassin, Voleur, Magicien, Roi, Eveque, Marchand, Architecte, Condotiere]
+        assassin = Assassin()
+        voleur = Voleur()
+        magicien = Magicien()
+        roi = Roi()
+        eveque = Eveque()
+        marchand = Marchand()
+        architecte = Architecte()
+        condotiere = Condotiere()
+        self.deck = [assassin, voleur, magicien, roi, eveque, marchand, architecte, condotiere]
         self.middle = []
 
     def __str__(self):
         string = ""
         for i, role in enumerate(self.deck):
-            string += str(i + 1) + " - " + role.toString() + "\n"
+            string += str(i + 1) + " - " + str(role) + "\n"
 
         return string
 
@@ -83,15 +92,15 @@ class RoleDeck(Deck):
         string = ""
         for i, role in enumerate(self.deck):
             if role.toString() != "Assassin" and role not in self.middle:
-                string += str(i + 1) + " - " + role.toString() + "\n"
+                string += str(i + 1) + " - " + str(role) + "\n"
         print(string)
 
     def showVoleur(self):
         """Shows every roles minus the one face up in the middle and the assassin and the voleur."""
         string = ""
         for i, role in enumerate(self.deck):
-            if role.toString() != "Assassin" and role.toString() != "Voleur" and role not in self.middle:
-                string += str(i + 1) + " - " + role.toString() + "\n"
+            if role.role != "Assassin" and role.role != "Voleur" and role not in self.middle:
+                string += str(i + 1) + " - " + str(role) + "\n"
         print(string)
 
     def reset(self):
